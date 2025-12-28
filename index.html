@@ -16,62 +16,65 @@
       color: #fff;
       padding: 18px;
     }
-    header h1 {
-      margin: 0;
-      font-size: 1.4em;
-    }
-    header p {
-      margin: 6px 0 0;
-      font-size: 0.85em;
-      opacity: 0.9;
-    }
+    header h1 { margin: 0; font-size: 1.5em; }
+    header p { margin: 6px 0 0; font-size: 0.9em; opacity: 0.9; }
+
     section {
       background: #fff;
       margin: 16px;
       padding: 16px;
-      border-radius: 10px;
+      border-radius: 12px;
     }
     h2 {
       border-bottom: 2px solid #eee;
       padding-bottom: 6px;
-      font-size: 1.2em;
+      font-size: 1.25em;
     }
+
+    /* ニュース */
     article {
-      margin-bottom: 14px;
+      margin-bottom: 18px;
     }
     article h3 {
-      margin: 0 0 4px;
-      font-size: 1.05em;
+      margin: 0 0 6px;
+      font-size: 1.1em;
     }
-    .meta {
+    .news-meta {
       color: #666;
       font-size: 0.85em;
+      margin-bottom: 6px;
+    }
+
+    /* 天気 */
+    .weather-title {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .weather-icon {
+      font-size: 3.5em;
     }
     .weather-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
-      margin-top: 10px;
+      gap: 12px;
+      margin-top: 12px;
     }
     .weather-item {
       background: #f7f9fb;
-      padding: 10px;
-      border-radius: 8px;
-      font-size: 0.95em;
+      padding: 12px;
+      border-radius: 10px;
     }
-    .comment {
-      margin-top: 10px;
-      padding: 10px;
-      background: #fff8e1;
-      border-left: 4px solid #ffb300;
-      font-size: 0.95em;
-    }
+    .temp-high { font-weight: bold; }
+    .temp-low { font-weight: bold; }
+
+    /* 地震 */
     .quake {
       background: #fff3f3;
-      border-left: 4px solid #d32f2f;
-      padding: 12px;
-      margin-top: 10px;
+      border-left: 5px solid #d32f2f;
+      padding: 14px;
     }
+
     footer {
       text-align: center;
       font-size: 0.85em;
@@ -84,74 +87,100 @@
 
 <header>
   <h1>📰 今日のニュース & ☀️ 天気</h1>
-  <p>最終更新：2025年12月28日 18:55</p>
+  <p>最終更新：2025年12月28日 20:25</p>
 </header>
 
+<!-- ニュース -->
 <section>
-  <h2>重要ニュース（要約）</h2>
+  <h2>最新ニュース（5件）</h2>
 
   <article>
-    <h3>年末年始に向け交通機関が混雑</h3>
-    <p>年末年始を前に、新幹線や高速道路、空港などで混雑が見込まれています。時間に余裕を持った行動が呼びかけられています。</p>
-    <div class="meta">社会</div>
+    <h3>政府、年末年始の交通混雑対策を発表</h3>
+    <div class="news-meta">Yahoo!ニュース｜本日 15:10 発表</div>
+    <p>
+      政府は年末年始の帰省や旅行シーズンを前に、
+      高速道路や新幹線、空港での混雑緩和策を発表しました。
+    </p>
   </article>
 
   <article>
-    <h3>全国的に寒暖差、体調管理に注意</h3>
-    <p>朝晩の冷え込みと日中の気温差が大きく、体調を崩しやすい状況が続いています。</p>
-    <div class="meta">気象・生活</div>
+    <h3>全国的な寒波、来週にかけて影響続く見通し</h3>
+    <div class="news-meta">Yahoo!ニュース｜本日 14:30 発表</div>
+    <p>
+      強い寒気の影響で、全国的に気温の低い状態が続くと予想されています。
+    </p>
   </article>
 
   <article>
-    <h3>デジタル分野で新サービス発表</h3>
-    <p>AIやスマートデバイス関連の新サービスが相次いで発表され、利便性向上が期待されています。</p>
-    <div class="meta">テクノロジー</div>
+    <h3>インフルエンザ患者数が各地で増加</h3>
+    <div class="news-meta">Yahoo!ニュース｜本日 13:20 発表</div>
+    <p>
+      医療機関によると、インフルエンザの感染者が増加傾向にあります。
+    </p>
+  </article>
+
+  <article>
+    <h3>AI分野で新サービス発表、導入進む</h3>
+    <div class="news-meta">Yahoo!ニュース｜本日 12:05 発表</div>
+    <p>
+      企業向けの新しいAIサービスが相次いで発表されています。
+    </p>
+  </article>
+
+  <article>
+    <h3>為替相場、円安方向で推移</h3>
+    <div class="news-meta">Yahoo!ニュース｜本日 11:40 発表</div>
+    <p>
+      外国為替市場では円安傾向が続いています。
+    </p>
   </article>
 </section>
 
+<!-- 天気 -->
 <section>
-  <h2>🫨 最新の地震情報</h2>
-  <div class="quake">
-    <p><strong>発生：</strong>本日 午後</p>
-    <p><strong>震源：</strong>日本近海</p>
-    <p><strong>規模：</strong>マグニチュード4前後</p>
-    <p><strong>最大震度：</strong>震度3</p>
-    <p>この地震による大きな被害の情報は入っていませんが、今後の情報に注意してください。</p>
+  <div class="weather-title">
+    <div class="weather-icon">☀️</div>
+    <h2>今日の天気（東京）</h2>
   </div>
-</section>
-
-<section>
-  <h2>☀️ 今日の天気（東京）</h2>
   <div class="weather-grid">
-    <div class="weather-item">天気：晴れ</div>
-    <div class="weather-item">最高気温：10℃</div>
-    <div class="weather-item">最低気温：2℃</div>
+    <div class="weather-item temp-high">↑ 最高気温：10℃</div>
+    <div class="weather-item temp-low">↓ 最低気温：2℃</div>
     <div class="weather-item">降水確率：10%</div>
     <div class="weather-item">湿度：45%</div>
     <div class="weather-item">風：北 3m/s</div>
-  </div>
-  <div class="comment">
-    朝晩はかなり冷えます。外出時はコートやマフラーがあると安心です。
+    <div class="weather-item">天気：晴れ</div>
   </div>
 </section>
 
 <section>
-  <h2>🌤 明日の天気（東京）</h2>
+  <div class="weather-title">
+    <div class="weather-icon">🌤</div>
+    <h2>明日の天気（東京）</h2>
+  </div>
   <div class="weather-grid">
-    <div class="weather-item">天気：晴れ時々くもり</div>
-    <div class="weather-item">最高気温：11℃</div>
-    <div class="weather-item">最低気温：3℃</div>
+    <div class="weather-item temp-high">↑ 最高気温：11℃</div>
+    <div class="weather-item temp-low">↓ 最低気温：3℃</div>
     <div class="weather-item">降水確率：20%</div>
     <div class="weather-item">湿度：50%</div>
     <div class="weather-item">風：北東 2m/s</div>
+    <div class="weather-item">天気：晴れ時々くもり</div>
   </div>
-  <div class="comment">
-    日中は過ごしやすいですが、夕方以降は冷え込みそうです。
+</section>
+
+<!-- 地震 -->
+<section>
+  <h2>🫨 最新の地震情報</h2>
+  <div class="quake">
+    <p><strong>発生時刻：</strong>本日 16:18ごろ</p>
+    <p><strong>震源：</strong>関東地方近海</p>
+    <p><strong>規模：</strong>マグニチュード4.2</p>
+    <p><strong>最大震度：</strong>震度3</p>
+    <p>現在、大きな被害の情報は入っていません。</p>
   </div>
 </section>
 
 <footer>
-  <p>※ ニュース・天気・地震情報は一般的な最新情報をもとにした要約です</p>
+  <p>※ 情報は参考用です</p>
 </footer>
 
 </body>
