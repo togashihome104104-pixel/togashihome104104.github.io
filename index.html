@@ -1,186 +1,210 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>今日のニュースと天気</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-      background: #f2f4f6;
-      margin: 0;
-      line-height: 1.7;
-    }
-    header {
-      background: #b30000;
-      color: #fff;
-      padding: 18px;
-    }
-    header h1 { margin: 0; font-size: 1.5em; }
-    header p { margin: 6px 0 0; font-size: 0.9em; opacity: 0.9; }
+<meta charset="UTF-8">
+<title>最新ニュース・天気・地震</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-    section {
-      background: #fff;
-      margin: 16px;
-      padding: 16px;
-      border-radius: 12px;
-    }
-    h2 {
-      border-bottom: 2px solid #eee;
-      padding-bottom: 6px;
-      font-size: 1.25em;
-    }
+<style>
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  background: #f2f4f6;
+  margin: 0;
+  line-height: 1.7;
+}
 
-    /* ニュース */
-    article {
-      margin-bottom: 18px;
-    }
-    article h3 {
-      margin: 0 0 6px;
-      font-size: 1.1em;
-    }
-    .news-meta {
-      color: #666;
-      font-size: 0.85em;
-      margin-bottom: 6px;
-    }
+header {
+  background: #b30000;
+  color: #fff;
+  padding: 18px;
+}
 
-    /* 天気 */
-    .weather-title {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-    }
-    .weather-icon {
-      font-size: 3.5em;
-    }
-    .weather-grid {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 12px;
-      margin-top: 12px;
-    }
-    .weather-item {
-      background: #f7f9fb;
-      padding: 12px;
-      border-radius: 10px;
-    }
-    .temp-high { font-weight: bold; }
-    .temp-low { font-weight: bold; }
+section {
+  background: #fff;
+  margin: 16px;
+  padding: 16px;
+  border-radius: 12px;
+}
 
-    /* 地震 */
-    .quake {
-      background: #fff3f3;
-      border-left: 5px solid #d32f2f;
-      padding: 14px;
-    }
+h1 { margin: 0; font-size: 1.5em; }
+h2 {
+  border-bottom: 2px solid #eee;
+  padding-bottom: 6px;
+}
 
-    footer {
-      text-align: center;
-      font-size: 0.85em;
-      color: #666;
-      padding: 20px;
-    }
-  </style>
+/* ニュース（折りたたみ） */
+details {
+  margin-bottom: 14px;
+  background: #fafafa;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+summary {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 天気 */
+.weather-title {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.weather-icon {
+  font-size: 4em;
+}
+.weather-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.weather-item {
+  background: #f7f9fb;
+  padding: 12px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* 地震 */
+.quake {
+  background: #fff3f3;
+  border-left: 5px solid #d32f2f;
+  padding: 14px;
+}
+
+footer {
+  text-align: center;
+  font-size: 0.85em;
+  color: #666;
+  padding: 20px;
+}
+</style>
 </head>
+
 <body>
 
 <header>
-  <h1>📰 今日のニュース & ☀️ 天気</h1>
-  <p>最終更新：2025年12月28日 20:25</p>
+  <h1>📰 最新ニュース・天気・地震</h1>
+  <p>最終更新：2025年12月29日</p>
 </header>
 
 <!-- ニュース -->
 <section>
-  <h2>最新ニュース（5件）</h2>
+<h2>最新ニュース（5件）</h2>
 
-  <article>
-    <h3>政府、年末年始の交通混雑対策を発表</h3>
-    <div class="news-meta">Yahoo!ニュース｜本日 15:10 発表</div>
-    <p>
-      政府は年末年始の帰省や旅行シーズンを前に、
-      高速道路や新幹線、空港での混雑緩和策を発表しました。
-    </p>
-  </article>
+<details>
+  <summary>人口7人瀬戸内海の島　中国人が土地購入、島民の不安高まる　買い戻すためクラファン</summary>
+  <p>
+    瀬戸内海にある人口7人の島が揺れています。
+    この島の土地を中国人が取得したため、これを買い戻そうと資金を集める
+    クラウドファンディングが始まりました。
+  </p>
+</details>
 
-  <article>
-    <h3>全国的な寒波、来週にかけて影響続く見通し</h3>
-    <div class="news-meta">Yahoo!ニュース｜本日 14:30 発表</div>
-    <p>
-      強い寒気の影響で、全国的に気温の低い状態が続くと予想されています。
-    </p>
-  </article>
+<details>
+  <summary>複数事故も監視員常駐せず　5歳男児死亡のスキー場</summary>
+  <p>
+    北海道小樽市の朝里川温泉スキー場で、札幌市の保育園児後藤飛向ちゃん（5）が
+    エスカレーターに右腕を挟まれ亡くなった事故で、現場では過去に転倒事故が
+    複数回発生し関係者の間で監視員の常駐を求める意見が出たが、
+    後回しにされていたことが29日、スキー場運営会社への取材で分かった。
+  </p>
+</details>
 
-  <article>
-    <h3>インフルエンザ患者数が各地で増加</h3>
-    <div class="news-meta">Yahoo!ニュース｜本日 13:20 発表</div>
-    <p>
-      医療機関によると、インフルエンザの感染者が増加傾向にあります。
-    </p>
-  </article>
+<details>
+  <summary>
+    【速報】中国軍　台湾周辺で軍事演習行うと発表
+    「台湾独立勢力と外部干渉勢力への厳重な警告」
+    頼清徳政権と高市総理「台湾有事」発言をけん制か
+  </summary>
+  <p>
+    台湾などを管轄する中国軍の東部戦区はきょう、台湾周辺で軍事演習を行いました。
+    演習の目的について「台湾独立勢力と外部干渉勢力に対する厳重な警告だ」
+    としていて、高市総理の「台湾有事」発言をけん制する狙いもあるものとみられます。
+  </p>
+</details>
 
-  <article>
-    <h3>AI分野で新サービス発表、導入進む</h3>
-    <div class="news-meta">Yahoo!ニュース｜本日 12:05 発表</div>
-    <p>
-      企業向けの新しいAIサービスが相次いで発表されています。
-    </p>
-  </article>
+<details>
+  <summary>
+    環境破壊や土砂災害、景観の悪化――全国に乱立するメガソーラー、なぜ中止にならない？
+  </summary>
+  <p>
+    2011年の福島第一原発事故以降、メガソーラー（大型太陽光発電施設）は
+    再生可能エネルギーの中心的存在として広がったが、
+    次第に全国各地で環境破壊などの問題が指摘されてきた。
+    住民が建設計画に反対しても、設置を止めるのは容易ではない。
+    今月、政府はメガソーラーに対する支援を2027年度に廃止し、
+    規制強化する方針を示した。
+  </p>
+</details>
 
-  <article>
-    <h3>為替相場、円安方向で推移</h3>
-    <div class="news-meta">Yahoo!ニュース｜本日 11:40 発表</div>
-    <p>
-      外国為替市場では円安傾向が続いています。
-    </p>
-  </article>
+<details>
+  <summary>
+    フワちゃん、プロレス再デビュー戦黒星
+    「最後の最後まで勝てると…」
+    敬語でマイクアピール　満員札止めの観客の拍手浴びる
+  </summary>
+  <p>
+    ◆「ＪＲ東海　推し旅　ｐｒｅｓｅｎｔｓ
+    ＳＴＡＲＤＯＭ　ＤＲＥＡＭ　ＱＵＥＥＮＤＯＭ　２０２５」
+    ▽フワちゃん再デビュー戦
+    〇葉月―フワちゃん●（２９日、東京・両国国技館）<br><br>
+
+    タレントのフワちゃんが葉月とのシングル対決でプロレス再デビュー。
+    敗れたものの女子プロレスラーとして新たな一歩を踏み出した。
+    試合後、「最後の最後まで勝てると思ってやりました。本当にありがとうございました。
+    このリングでもっと高みを目指して頑張ります」と敬語でマイクアピールした。
+  </p>
+</details>
+
 </section>
 
 <!-- 天気 -->
 <section>
-  <div class="weather-title">
-    <div class="weather-icon">☀️</div>
-    <h2>今日の天気（東京）</h2>
-  </div>
-  <div class="weather-grid">
-    <div class="weather-item temp-high">↑ 最高気温：10℃</div>
-    <div class="weather-item temp-low">↓ 最低気温：2℃</div>
-    <div class="weather-item">降水確率：10%</div>
-    <div class="weather-item">湿度：45%</div>
-    <div class="weather-item">風：北 3m/s</div>
-    <div class="weather-item">天気：晴れ</div>
-  </div>
+<div class="weather-title">
+  <div class="weather-icon">☀️</div>
+  <h2>今日の天気（東京）</h2>
+</div>
+<div class="weather-grid">
+  <div class="weather-item">↑ 最高気温：13℃</div>
+  <div class="weather-item">↓ 最低気温：2℃</div>
+  <div class="weather-item">降水確率：0%</div>
+  <div class="weather-item">天気：晴れ</div>
+</div>
 </section>
 
 <section>
-  <div class="weather-title">
-    <div class="weather-icon">🌤</div>
-    <h2>明日の天気（東京）</h2>
-  </div>
-  <div class="weather-grid">
-    <div class="weather-item temp-high">↑ 最高気温：11℃</div>
-    <div class="weather-item temp-low">↓ 最低気温：3℃</div>
-    <div class="weather-item">降水確率：20%</div>
-    <div class="weather-item">湿度：50%</div>
-    <div class="weather-item">風：北東 2m/s</div>
-    <div class="weather-item">天気：晴れ時々くもり</div>
-  </div>
+<div class="weather-title">
+  <div class="weather-icon">☀️</div>
+  <h2>明日の天気（東京）</h2>
+</div>
+<div class="weather-grid">
+  <div class="weather-item">↑ 最高気温：16℃</div>
+  <div class="weather-item">↓ 最低気温：1℃</div>
+  <div class="weather-item">降水確率：0%</div>
+  <div class="weather-item">天気：晴れ</div>
+</div>
 </section>
 
 <!-- 地震 -->
 <section>
-  <h2>🫨 最新の地震情報</h2>
-  <div class="quake">
-    <p><strong>発生時刻：</strong>本日 16:18ごろ</p>
-    <p><strong>震源：</strong>関東地方近海</p>
-    <p><strong>規模：</strong>マグニチュード4.2</p>
-    <p><strong>最大震度：</strong>震度3</p>
-    <p>現在、大きな被害の情報は入っていません。</p>
-  </div>
+<h2>🫨 震度3以上の最新の地震</h2>
+<div class="quake">
+  <p><strong>発生日時：</strong>12月29日 7時51分ごろ</p>
+  <p><strong>震源地：</strong>トカラ列島近海</p>
+  <p><strong>最大震度：</strong>震度3</p>
+  <p>
+    トカラ列島近海を震源とする地震が発生しました。
+    津波の心配はありません。
+    今後の地震情報には引き続き注意してください。
+  </p>
+</div>
 </section>
 
 <footer>
-  <p>※ 情報は参考用です</p>
+<p>※ 本サイトは手動更新の参考情報です</p>
 </footer>
 
 </body>
