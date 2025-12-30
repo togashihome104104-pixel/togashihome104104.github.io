@@ -2,255 +2,236 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>今日のニュース・天気・地震</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <style>
-body {
-  margin: 0;
-  font-family: system-ui, -apple-system, BlinkMacSystemFont;
-  background: #f2f2f2;
-  color: #000;
+:root{
+  --bg:#f5f5f5;
+  --card:#ffffff;
+  --text:#000;
+  --accent:#e60000;
+}
+body.dark{
+  --bg:#121212;
+  --card:#1e1e1e;
+  --text:#ffffff;
 }
 
-/* ===== ヘッダー ===== */
-.header {
-  background: #e53935;
-  color: #fff;
-  padding: 12px;
-  border-radius: 0 0 16px 16px;
-}
-.header h1 {
-  margin: 0;
-  font-size: 20px;
-}
-.update-time {
-  font-size: 12px;
-  opacity: 0.9;
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Hiragino Sans";
+  font-size:16px;
 }
 
-/* ===== タブ ===== */
-.tabs {
-  display: flex;
-  justify-content: space-around;
-  background: #fff;
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  border-bottom: 1px solid #ddd;
+header{
+  background:var(--accent);
+  color:#fff;
+  padding:10px;
 }
-.tabs button {
-  flex: 1;
-  padding: 10px;
-  border: none;
-  background: none;
-  font-size: 14px;
+header h1{margin:0;font-size:20px;}
+header small{font-size:12px;}
+
+.tabs{
+  position:sticky;
+  top:0;
+  background:var(--card);
+  display:flex;
+  border-bottom:1px solid #ccc;
+  z-index:10;
 }
-.tabs button.active {
-  border-bottom: 3px solid #e53935;
-  font-weight: bold;
+.tabs button{
+  flex:1;
+  padding:10px;
+  border:none;
+  background:none;
+  font-size:16px;
+}
+.tabs button.active{
+  border-bottom:3px solid var(--accent);
+  font-weight:bold;
 }
 
-/* ===== 共通 ===== */
-.section {
-  display: none;
-  padding: 12px;
-}
-.section.active {
-  display: block;
+.section{display:none;padding:10px;}
+.section.active{display:block;}
+
+.card{
+  background:var(--card);
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:10px;
 }
 
-.card {
-  background: #fff;
-  border-radius: 16px;
-  padding: 12px;
-  margin-bottom: 12px;
+/* NEWS */
+.news-title{font-weight:bold;font-size:17px;}
+.news-time{font-size:13px;color:gray;}
+
+/* WEATHER */
+.weather-box{
+  display:flex;
+  gap:10px;
+}
+.weather-card{
+  flex:1;
+  text-align:center;
+  font-size:18px;
+}
+.weather-icon{font-size:48px;}
+
+/* WEEK */
+.week{
+  display:grid;
+  grid-template-columns:repeat(7,1fr);
+  gap:6px;
+  font-size:13px;
+  text-align:center;
 }
 
-/* ===== 天気 ===== */
-.weather-box {
-  display: flex;
-  gap: 12px;
-}
-.weather-card {
-  flex: 1;
-  text-align: center;
-}
-.weather-icon {
-  font-size: 48px;
-}
-.temp-high { color: red; font-weight: bold; }
-.temp-low { color: #4da3ff; }
+/* QUAKE */
+.shindo1{color:#888;}
+.shindo2{color:#4aa3ff;}
+.shindo3{color:#0055ff;font-weight:bold;}
 
-/* ===== 週間天気（★追加部分） ===== */
-.weekly-title {
-  font-size: 18px;
-  font-weight: bold;
-  margin: 16px 0 8px;
-}
-
-.weekly-weather {
-  display: flex;
-  gap: 8px;
-  overflow-x: auto;
-}
-
-.weekly-weather .day {
-  background: #fff;
-  border-radius: 12px;
-  padding: 8px;
-  min-width: 90px;
-  text-align: center;
-  font-size: 14px;
-}
-
-.weekly-weather .high {
-  color: red;
-  font-weight: bold;
-}
-
-.weekly-weather .low {
-  color: #4da3ff;
-}
-
-.weekly-weather .rain {
-  font-size: 12px;
-}
-
-.weekly-weather .red {
-  color: #e53935;
-}
-
-.weekly-weather .blue {
-  color: #1e88e5;
-}
-
-/* ===== ニュース ===== */
-details summary {
-  font-weight: bold;
-  cursor: pointer;
-}
-.news-time {
-  font-size: 12px;
-  color: #666;
-  margin-top: 4px;
-}
-
-/* ===== 地震 ===== */
-.shindo1 { color: #888; }
-.shindo2 { color: #4da3ff; }
-.shindo3 { color: #1e88e5; }
-
-/* ===== ダークモード ===== */
-.dark {
-  background: #121212;
-  color: #fff;
-}
-.dark .card,
-.dark .tabs {
-  background: #1e1e1e;
-  color: #fff;
+/* SETTINGS */
+.setting-btn{
+  font-size:18px;
+  padding:10px;
+  margin:5px 0;
+  width:100%;
 }
 </style>
 </head>
 
 <body>
 
-<div class="header">
+<header>
   <h1>今日のニュース・天気・地震</h1>
-  <div class="update-time">最終更新 12/30 現在</div>
-</div>
+  <small id="updated"></small>
+</header>
 
 <div class="tabs">
-  <button onclick="openTab('news')" class="active">ニュース</button>
+  <button class="active" onclick="openTab('news')">ニュース</button>
   <button onclick="openTab('weather')">天気</button>
   <button onclick="openTab('quake')">地震</button>
-  <button onclick="openTab('setting')">設定</button>
+  <button onclick="openTab('settings')">設定</button>
 </div>
 
-<!-- ===== ニュース ===== -->
+<!-- NEWS -->
 <div id="news" class="section active">
-  <div class="card">
-    <details>
-      <summary>肘近くまで腕巻き込まれ　エスカレーター、救出かなわず</summary>
-      <p>「助けてください」。女性の叫び声で振り返ると、男の子があおむけで倒れ、右腕は肘の近くまでエスカレーターに巻き込まれていた―。北海道小樽市のスキー場で札幌市の保育園児後藤飛向ちゃん（5）が死亡した事故で、現場に居合わせた奈良県広陵町の会社経営者（42）が29日、共同通信などの取材に当時の状況を語った。</p>
-      <div class="news-time">12/29(月) 22:29</div>
-    </details>
-  </div>
 
-  <div class="card">
-    <details>
-      <summary>30日の中国軍事演習で国際線の10万人超に影響へ</summary>
-      <p>【台北＝西見由章】中国軍が29日に開始した台湾周辺での軍事演習を巡り、台湾の交通部民用航空局は、中国当局が30日にロケット発射演習を行うとして飛行禁止エリアを設定したことにより、台湾発着などの国際線857便、乗客10万人超に影響が出ると発表した。</p>
-      <div class="news-time">12/29(月) 22:51</div>
-    </details>
-  </div>
+<details class="card">
+<summary class="news-title">肘近くまで腕巻き込まれ　エスカレーター、救出かなわず</summary>
+<p>「助けてください」。女性の叫び声で振り返ると、男の子があおむけで倒れ、右腕は肘の近くまでエスカレーターに巻き込まれていた―。北海道小樽市のスキー場で札幌市の保育園児後藤飛向ちゃん（5）が死亡した事故で、現場に居合わせた奈良県広陵町の会社経営者（42）が29日、共同通信などの取材に当時の状況を語った。</p>
+<p class="news-time">発表：12/29(月) 22:29</p>
+</details>
+
+<details class="card">
+<summary class="news-title">30日の中国軍事演習で国際線の10万人超に影響へ　台湾当局「国際規範への重大な違反」</summary>
+<p>【台北＝西見由章】中国軍が29日に開始した台湾周辺での軍事演習を巡り、台湾の交通部（国土交通省に相当）民用航空局は29日、中国当局が30日に「ロケット発射演習」を行うとして飛行禁止エリアを設定したことにより、台湾発着などの国際線計857便とその乗客10万人超に影響が出ると発表した。</p>
+<p class="news-time">発表：12/29(月) 22:51</p>
+</details>
+
+<details class="card">
+<summary class="news-title">高田馬場エステ店女性店長刺傷　中国籍の男（35）を殺人未遂の疑いで逮捕</summary>
+<p>29日、東京・高田馬場でエステ店店長の30代の女性が刺された事件で、警視庁は30日未明、中国籍の35歳の男を殺人未遂の疑いで逮捕しました。</p>
+<p class="news-time">発表：12/30(火) 7:13</p>
+</details>
+
+<details class="card">
+<summary class="news-title">消えるホームの時刻表　横浜市営地下鉄、ＪＲ…</summary>
+<p>横浜市営地下鉄のホーム上から、一覧式の時刻表が消えた。市交通局の業務省力化やコスト削減が目的で、代わりにスマートフォンで時刻を見られるQRコードを掲出。</p>
+<p class="news-time">発表：12/30(火) 7:57</p>
+</details>
+
+<details class="card">
+<summary class="news-title">自民、「公明票」未練消えず　次期衆院選、維新と協力模索</summary>
+<p>自民党は次期衆院選に向け、小選挙区で支援を受けてきた公明党への未練を消せないでいる。</p>
+<p class="news-time">発表：12/30(火) 8:58</p>
+</details>
+
 </div>
 
-<!-- ===== 天気 ===== -->
+<!-- WEATHER -->
 <div id="weather" class="section">
-  <div class="weather-box">
-    <div class="card weather-card">
-      <h3>今日の天気 ☀️</h3>
-      <div class="weather-icon">☀️</div>
-      <p>晴れ</p>
-      <p><span class="temp-high">↑16°</span> / <span class="temp-low">↓0°</span></p>
-      <p>☂️ 0%</p>
-    </div>
 
-    <div class="card weather-card">
-      <h3>明日の天気 ☀️</h3>
-      <div class="weather-icon">☀️</div>
-      <p>晴れ</p>
-      <p><span class="temp-high">↑14°</span> / <span class="temp-low">↓2°</span></p>
-      <p>☂️ 0%</p>
-    </div>
+<div class="weather-box">
+  <div class="card weather-card">
+    <div class="weather-icon">☀️</div>
+    今日の天気<br>
+    晴れ<br>
+    ↑<span style="color:red">16°</span><br>
+    ↓<span style="color:#4aa3ff">0°</span><br>
+    ☂️0%
   </div>
 
-  <!-- ★ ここから追加 ★ -->
-  <div class="weekly-title">一週間の天気予報</div>
-
-  <div class="weekly-weather">
-    <div class="day red"><div>1(木)</div><div>☀️</div><div class="high">9℃</div><div class="low">0℃</div><div class="rain">20%</div></div>
-    <div class="day"><div>2(金)</div><div>☁️</div><div class="high">8℃</div><div class="low">1℃</div><div class="rain">40%</div></div>
-    <div class="day blue"><div>3(土)</div><div>☀️</div><div class="high">10℃</div><div class="low">-2℃</div><div class="rain">20%</div></div>
-    <div class="day red"><div>4(日)</div><div>☀️</div><div class="high">12℃</div><div class="low">-2℃</div><div class="rain">20%</div></div>
-    <div class="day"><div>5(月)</div><div>☀️</div><div class="high">9℃</div><div class="low">0℃</div><div class="rain">20%</div></div>
-    <div class="day"><div>6(火)</div><div>☀️</div><div class="high">11℃</div><div class="low">-3℃</div><div class="rain">20%</div></div>
-    <div class="day"><div>7(水)</div><div>🌧️</div><div class="high">12℃</div><div class="low">-1℃</div><div class="rain">60%</div></div>
+  <div class="card weather-card">
+    <div class="weather-icon">☀️</div>
+    明日の天気<br>
+    晴れ<br>
+    ↑<span style="color:red">14°</span><br>
+    ↓<span style="color:#4aa3ff">2°</span><br>
+    ☂️0%
   </div>
 </div>
 
-<!-- ===== 地震 ===== -->
+<h3>一週間の天気予報</h3>
+<div class="card week">
+  <div>木<br>☀️<br>9°/0°<br>20%</div>
+  <div>金<br>☁️<br>8°/1°<br>40%</div>
+  <div>土<br>☀️<br>10°/-2°<br>20%</div>
+  <div>日<br>☀️<br>12°/-2°<br>20%</div>
+  <div>月<br>☀️<br>9°/0°<br>20%</div>
+  <div>火<br>☀️<br>11°/-3°<br>20%</div>
+  <div>水<br>🌧️<br>12°/-1°<br>60%</div>
+</div>
+
+</div>
+
+<!-- QUAKE -->
 <div id="quake" class="section">
-  <div class="card shindo1">12/30 12:24 熊本県熊本地方 M2.1 最大震度1</div>
-  <div class="card shindo1">12/30 10:08 千葉県南東沖 M2.3 最大震度1</div>
-  <div class="card shindo1">12/30 8:07 新潟県上越地方 M2.6 最大震度1</div>
-  <div class="card shindo1">12/29 21:08 埼玉県南部 M3.5 最大震度1</div>
-  <div class="card shindo1">12/29 8:33 豊後水道 M3.1 最大震度1</div>
-  <div class="card shindo3">12/29 7:51 トカラ列島近海 M3.3 最大震度3</div>
-  <div class="card shindo3">12/29 7:35 熊本県阿蘇地方 M4.0 最大震度3</div>
-  <div class="card shindo2">12/29 6:12 熊本県阿蘇地方 M2.9 最大震度2</div>
+
+<div class="card shindo1">12/30 12:24 熊本県熊本地方 M2.1 最大震度1</div>
+<div class="card shindo1">12/30 10:08 千葉県南東沖 M2.3 最大震度1</div>
+<div class="card shindo1">12/30 8:07 新潟県上越地方 M2.6 最大震度1</div>
+<div class="card shindo1">12/29 21:08 埼玉県南部 M3.5 最大震度1</div>
+<div class="card shindo1">12/29 8:33 豊後水道 M3.1 最大震度1</div>
+<div class="card shindo3">12/29 7:51 トカラ列島近海 M3.3 最大震度3</div>
+<div class="card shindo1">12/29 7:37 熊本県阿蘇地方 M2.4 最大震度1</div>
+<div class="card shindo3">12/29 7:35 熊本県阿蘇地方 M4.0 最大震度3</div>
+<div class="card shindo2">12/29 6:12 熊本県阿蘇地方 M2.9 最大震度2</div>
+<div class="card shindo1">12/28 18:08 トカラ列島近海 M2.1 最大震度1</div>
+
 </div>
 
-<!-- ===== 設定 ===== -->
-<div id="setting" class="section">
-  <div class="card">
-    <button onclick="toggleDark()">🌙 ダークモード切替</button>
-  </div>
+<!-- SETTINGS -->
+<div id="settings" class="section">
+<button class="setting-btn" onclick="toggleDark()">🌙 ダークモード切替</button>
+<button class="setting-btn" onclick="changeSize(1)">🔠 文字大</button>
+<button class="setting-btn" onclick="changeSize(-1)">🔡 文字小</button>
 </div>
 
 <script>
-function openTab(id) {
-  document.querySelectorAll('.section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+function openTab(id){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   event.target.classList.add('active');
 }
 
-function toggleDark() {
+function toggleDark(){
   document.body.classList.toggle('dark');
 }
+
+let size=16;
+function changeSize(n){
+  size+=n;
+  document.body.style.fontSize=size+"px";
+}
+
+document.getElementById("updated").textContent =
+  "最終更新："+new Date().toLocaleString();
 </script>
 
 </body>
