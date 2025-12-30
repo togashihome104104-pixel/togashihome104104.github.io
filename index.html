@@ -2,218 +2,200 @@
 <html lang="ja">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>今日のニュース・天気・地震</title>
 
 <style>
-:root{
-  --bg:#ffffff;
-  --text:#000000;
-  --card:#f5f5f5;
-}
-.dark{
-  --bg:#121212;
-  --text:#ffffff;
-  --card:#1f1f1f;
-}
-
 body{
   margin:0;
-  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
-  background:var(--bg);
-  color:var(--text);
+  font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  background:#f5f5f5;
+  color:#000;
 }
 
-/* ヘッダー */
-.header{
-  background:#e60012;
+.dark{
+  background:#121212;
   color:#fff;
-  padding:15px;
+}
+
+header{
+  background:#d32f2f;
+  color:#fff;
+  padding:12px;
   text-align:center;
 }
-.header h1{margin:0;font-size:20px;}
-.header .update{font-size:12px;opacity:.9;}
 
-/* ダークモードボタン */
-.mode{
-  position:fixed;
-  top:10px;
-  right:10px;
-  font-size:30px;
-  border:none;
-  border-radius:50%;
-  padding:10px;
+header small{
+  display:block;
+  font-size:12px;
+  opacity:.9;
 }
 
-/* タブ */
 .tabs{
-  display:flex;
-  background:#eee;
   position:sticky;
   top:0;
+  display:flex;
+  background:#fff;
+  border-bottom:1px solid #ccc;
+  z-index:10;
 }
+
+.dark .tabs{background:#1e1e1e;}
+
 .tabs button{
   flex:1;
-  padding:12px;
+  padding:10px;
   border:none;
   background:none;
-  font-size:16px;
-}
-.tabs button.active{
-  font-weight:bold;
-  border-bottom:3px solid #007aff;
+  font-size:15px;
 }
 
-/* セクション */
-section{display:none;padding:15px;}
+.tabs button.active{
+  border-bottom:3px solid #d32f2f;
+  font-weight:bold;
+}
+
+section{display:none;padding:12px;}
 section.active{display:block;}
 
-/* カード */
 .card{
-  background:var(--card);
-  border-radius:14px;
-  padding:15px;
-  margin-bottom:15px;
+  background:#fff;
+  border-radius:12px;
+  padding:12px;
+  margin-bottom:12px;
 }
 
-/* ニュース折りたたみ */
-details{
-  background:var(--card);
-  border-radius:14px;
-  padding:15px;
-  margin-bottom:15px;
-}
-summary{
-  font-size:18px;
-  font-weight:bold;
+.dark .card{background:#1e1e1e;}
+
+.news-title{font-weight:bold;font-size:16px;}
+.news-time{font-size:12px;color:#666;}
+.dark .news-time{color:#aaa;}
+
+details summary{
   cursor:pointer;
-}
-.news-time{
-  font-size:13px;
-  opacity:.7;
-  margin-top:5px;
+  font-weight:bold;
 }
 
-/* 天気 */
-.weather-wrap{
-  display:flex;
-  gap:10px;
-}
-.weather{
-  flex:1;
+.weather-box{
   text-align:center;
+  font-size:18px;
 }
+
 .weather-icon{
   font-size:48px;
+  margin:6px 0;
 }
-.temp-high{color:red;font-size:20px;}
-.temp-low{color:#4da6ff;font-size:20px;}
-.rain{margin-top:5px;}
 
-/* 地震色 */
-.shindo1{color:gray;}
-.shindo2{color:#4da6ff;}
-.shindo3{color:blue;font-weight:bold;}
+.max{color:red;font-weight:bold;}
+.min{color:#00aaff;font-weight:bold;}
 
-/* 設定 */
+.shindo1{color:#999;}
+.shindo2{color:#4fc3f7;}
+.shindo3{color:#1976d2;font-weight:bold;}
+
 .setting button{
+  font-size:18px;
+  margin:6px 0;
   width:100%;
-  padding:15px;
-  font-size:20px;
-  margin-bottom:10px;
 }
-.setting label{font-size:20px;}
+
+.setting label{
+  font-size:18px;
+}
 </style>
 </head>
 
 <body>
 
-<button id="modeBtn" class="mode" onclick="toggleMode()">🌙</button>
-
-<div class="header">
-  <h1>今日のニュース・天気・地震</h1>
-  <div class="update" id="time"></div>
-</div>
+<header>
+  今日のニュース・天気・地震
+  <small>最終更新 12/30 08:58</small>
+</header>
 
 <div class="tabs">
-  <button class="active" onclick="showTab('news')">📰</button>
-  <button onclick="showTab('weather')">🌤</button>
-  <button onclick="showTab('quake')">🌏</button>
-  <button onclick="showTab('setting')">⚙️</button>
+  <button class="active" onclick="showTab('news')">📰 ニュース</button>
+  <button onclick="showTab('weather')">🌤 天気</button>
+  <button onclick="showTab('quake')">🌏 地震</button>
+  <button onclick="showTab('setting')">⚙️ 設定</button>
 </div>
 
 <!-- ニュース -->
 <section id="news" class="active">
 
-<details open>
-<summary>肘近くまで腕巻き込まれ　エスカレーター、救出かなわず</summary>
-<p>「助けてください」。女性の叫び声で振り返ると、男の子があおむけで倒れ、右腕は肘の近くまでエスカレーターに巻き込まれていた―。</p>
-<div class="news-time">発表：12/29(月)22:29</div>
+<details class="card" open>
+<summary class="news-title">肘近くまで腕巻き込まれ　エスカレーター、救出かなわず</summary>
+<p>「助けてください」。女性の叫び声で振り返ると、男の子があおむけで倒れ、右腕は肘の近くまでエスカレーターに巻き込まれていた―。北海道小樽市のスキー場で札幌市の保育園児後藤飛向ちゃん（5）が死亡した事故で、現場に居合わせた奈良県広陵町の会社経営者（42）が29日、共同通信などの取材に当時の状況を語った。</p>
+<p class="news-time">発表：12/29(月) 22:29</p>
 </details>
 
-<details>
-<summary>30日の中国軍事演習で国際線の10万人超に影響へ</summary>
-<p>中国当局が飛行禁止エリアを設定し、国際線857便・10万人超に影響。</p>
-<div class="news-time">発表：12/29(月)22:51</div>
+<details class="card">
+<summary class="news-title">30日の中国軍事演習で国際線の10万人超に影響へ　台湾当局「国際規範への重大な違反」</summary>
+<p>【台北＝西見由章】中国軍が29日に開始した台湾周辺での軍事演習を巡り、台湾の交通部（国土交通省に相当）民用航空局は29日、中国当局が30日に「ロケット発射演習」を行うとして飛行禁止エリアを設定したことにより、台湾発着などの国際線計857便とその乗客10万人超に影響が出ると発表した。</p>
+<p class="news-time">発表：12/29(月) 22:51</p>
 </details>
 
-<details>
-<summary>高田馬場エステ店女性店長刺傷事件</summary>
-<p>中国籍の男が殺人未遂の疑いで逮捕。</p>
-<div class="news-time">発表：12/30(火)7:13</div>
+<details class="card">
+<summary class="news-title">高田馬場エステ店女性店長刺傷　中国籍の男（35）を殺人未遂の疑いで逮捕</summary>
+<p>29日、東京・高田馬場でエステ店店長の30代の女性が刺された事件で、警視庁は30日未明、中国籍の35歳の男を殺人未遂の疑いで逮捕しました。</p>
+<p class="news-time">発表：12/30(火) 7:13</p>
 </details>
 
-<details>
-<summary>消えるホームの時刻表　横浜市営地下鉄</summary>
-<p>QRコード案内への移行で議論。</p>
-<div class="news-time">発表：12/30(火)7:57</div>
+<details class="card">
+<summary class="news-title">消えるホームの時刻表　横浜市営地下鉄、ＪＲ…</summary>
+<p>横浜市営地下鉄のホーム上から、一覧式の時刻表が消えた。市交通局の業務省力化やコスト削減が目的で、代わりにスマートフォンで時刻を見られる２次元コード（ＱＲコード）を掲出。ただ「高齢者など不慣れな客への配慮が足りない」と交流サイト（ＳＮＳ）で議論を呼び、専門家もサービス低下を懸念している。</p>
+<p class="news-time">発表：12/30(火) 7:57</p>
 </details>
 
-<details>
-<summary>自民、「公明票」未練消えず</summary>
-<p>次期衆院選を見据えた動き。</p>
-<div class="news-time">発表：12/30(火)8:58</div>
+<details class="card">
+<summary class="news-title">自民、「公明票」未練消えず　次期衆院選、維新と協力模索</summary>
+<p>自民党は次期衆院選に向け、小選挙区で支援を受けてきた公明党への未練を消せないでいる。</p>
+<p class="news-time">発表：12/30(火) 8:58</p>
 </details>
 
 </section>
 
 <!-- 天気 -->
 <section id="weather">
-
-<div class="weather-wrap">
-
-<div class="card weather">
-<div class="weather-title">今日の天気</div>
-<div class="weather-icon">☀️</div>
-<div>晴れ</div>
-<div class="temp-high">↑ 最高 16°C</div>
-<div class="temp-low">↓ 最低 0°C</div>
-<div class="rain">☂️ 午前10% / 午後10%</div>
+<div class="card weather-box">
+  <div class="weather-icon">☀️</div>
+  今日の天気<br>
+  晴れ<br>
+  <span class="max">↑16°</span>　
+  <span class="min">↓0°</span><br>
+  ☂️ 降水確率 0%
 </div>
 
-<div class="card weather">
-<div class="weather-title">明日の天気</div>
-<div class="weather-icon">🌥</div>
-<div>くもりのち晴れ</div>
-<div class="temp-high">↑ 最高 14°C</div>
-<div class="temp-low">↓ 最低 2°C</div>
-<div class="rain">☂️ 午前10% / 午後10%</div>
-</div>
-
+<div class="card weather-box">
+  <div class="weather-icon">☀️</div>
+  明日の天気<br>
+  晴れ<br>
+  <span class="max">↑14°</span>　
+  <span class="min">↓2°</span><br>
+  ☂️ 降水確率 0%
 </div>
 </section>
 
 <!-- 地震 -->
 <section id="quake">
-<div class="card shindo3">12/29 7:51 トカラ列島近海 M3.3 最大震度3</div>
-<div class="card shindo3">12/29 7:35 熊本県阿蘇地方 M4.0 最大震度3</div>
+<div class="card shindo1">12/30 12:24　熊本県熊本地方　M2.1　最大震度1</div>
+<div class="card shindo1">12/30 10:08　千葉県南東沖　M2.3　最大震度1</div>
+<div class="card shindo1">12/30 8:07　新潟県上越地方　M2.6　最大震度1</div>
+<div class="card shindo1">12/29 21:08　埼玉県南部　M3.5　最大震度1</div>
+<div class="card shindo1">12/29 8:33　豊後水道　M3.1　最大震度1</div>
+<div class="card shindo3">12/29 7:51　トカラ列島近海　M3.3　最大震度3</div>
+<div class="card shindo1">12/29 7:37　熊本県阿蘇地方　M2.4　最大震度1</div>
+<div class="card shindo3">12/29 7:35　熊本県阿蘇地方　M4.0　最大震度3</div>
+<div class="card shindo2">12/29 6:12　熊本県阿蘇地方　M2.9　最大震度2</div>
+<div class="card shindo1">12/28 18:08　トカラ列島近海　M2.1　最大震度1</div>
 </section>
 
 <!-- 設定 -->
 <section id="setting">
-<div class="setting">
-<button onclick="setFont(16)">文字サイズ 普通</button>
-<button onclick="setFont(20)">文字サイズ 大</button>
+<div class="card setting">
+<button onclick="toggleDark()">🌙 ダーク / ☀️ ライト</button>
+<label>
+<input type="checkbox" id="only3" onchange="filterQuake()" style="transform:scale(1.5)">
+ 震度3以上のみ表示
+</label>
 </div>
 </section>
 
@@ -225,19 +207,17 @@ function showTab(id){
   event.target.classList.add('active');
 }
 
-function toggleMode(){
+function toggleDark(){
   document.body.classList.toggle('dark');
-  const btn=document.getElementById('modeBtn');
-  btn.textContent=document.body.classList.contains('dark')?'☀️':'🌙';
 }
 
-function setFont(size){
-  document.body.style.fontSize=size+'px';
+function filterQuake(){
+  const on=document.getElementById('only3').checked;
+  document.querySelectorAll('#quake .card').forEach(c=>{
+    if(on && !c.classList.contains('shindo3')) c.style.display='none';
+    else c.style.display='block';
+  });
 }
-
-const now=new Date();
-document.getElementById('time').textContent=
-`最終更新：12/30 ${now.getHours()}:${String(now.getMinutes()).padStart(2,'0')}`;
 </script>
 
 </body>
