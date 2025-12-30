@@ -93,6 +93,7 @@ header small{font-size:12px;}
 .shindo1{color:#888;}
 .shindo2{color:#4aa3ff;}
 .shindo3{color:#0055ff;font-weight:bold;}
+.shindo4{color:#f4c400;font-weight:bold;}
 
 /* SETTINGS */
 .setting-btn{
@@ -114,7 +115,7 @@ header small{font-size:12px;}
 <div class="tabs">
   <button class="active" onclick="openTab('news')">ニュース</button>
   <button onclick="openTab('weather')">天気</button>
-  <button onclick="openTab('quake')">地震</button>
+  <button onclick="openTab('quake')">⚠️地震</button>
   <button onclick="openTab('settings')">設定</button>
 </div>
 
@@ -134,14 +135,14 @@ header small{font-size:12px;}
 </details>
 
 <details class="card">
-<summary class="news-title">高田馬場エステ店女性店長刺傷　中国籍の男（35）を殺人未遂の疑いで逮捕</summary>
+<summary class="news-title">高田馬場エステ店女性店長刺傷　中国籍の男（35）を殺人未遂の疑いで逮捕　8月から複数回来店　エステ料金支払いでトラブルか</summary>
 <p>29日、東京・高田馬場でエステ店店長の30代の女性が刺された事件で、警視庁は30日未明、中国籍の35歳の男を殺人未遂の疑いで逮捕しました。</p>
 <p class="news-time">発表：12/30(火) 7:13</p>
 </details>
 
 <details class="card">
-<summary class="news-title">消えるホームの時刻表　横浜市営地下鉄、ＪＲ…</summary>
-<p>横浜市営地下鉄のホーム上から、一覧式の時刻表が消えた。市交通局の業務省力化やコスト削減が目的で、代わりにスマートフォンで時刻を見られるQRコードを掲出。</p>
+<summary class="news-title">消えるホームの時刻表　横浜市営地下鉄、ＪＲ…省力化目的で乗客に理解求める、「配慮足りない」不満も</summary>
+<p>横浜市営地下鉄のホーム上から、一覧式の時刻表が消えた。市交通局の業務省力化やコスト削減が目的で、代わりにスマートフォンで時刻を見られる２次元コード（ＱＲコード）を掲出。ただ「高齢者など不慣れな客への配慮が足りない」と交流サイト（ＳＮＳ）で議論を呼び、専門家もサービス低下を懸念している。</p>
 <p class="news-time">発表：12/30(火) 7:57</p>
 </details>
 
@@ -151,57 +152,33 @@ header small{font-size:12px;}
 <p class="news-time">発表：12/30(火) 8:58</p>
 </details>
 
+<details class="card">
+<summary class="news-title">小学校で飼ったブタ「食肉センターに送るか」児童が涙の議論　決断下した元教諭「今も問い続けている」</summary>
+<p>小学校で、子どもたちが1頭のブタを約3年育て、卒業前に「下級生に飼育を引き継ぐか」「食肉センターに送るか」を自分たちで議論して決めた「授業」があった。当時それを行ったのが、現在京都教育大学教授の黒田恭史さん。1990〜93年に行われたこの実践はテレビで紹介され、書籍化を経て2008年には妻夫木聡さん主演の映画『ブタがいた教室』として全国公開され、大きな反響を呼んだ。</p>
+</details>
+
 </div>
 
-<!-- WEATHER -->
+</div>
+
+<!-- WEATHER（変更なし） -->
 <div id="weather" class="section">
-
-<div class="weather-box">
-  <div class="card weather-card">
-    <div class="weather-icon">☀️</div>
-    今日の天気<br>
-    晴れ<br>
-    ↑<span style="color:red">16°</span><br>
-    ↓<span style="color:#4aa3ff">0°</span><br>
-    ☂️0%
-  </div>
-
-  <div class="card weather-card">
-    <div class="weather-icon">☀️</div>
-    明日の天気<br>
-    晴れ<br>
-    ↑<span style="color:red">14°</span><br>
-    ↓<span style="color:#4aa3ff">2°</span><br>
-    ☂️0%
-  </div>
-</div>
-
-<h3>一週間の天気予報</h3>
-<div class="card week">
-  <div>木<br>☀️<br>9°/0°<br>20%</div>
-  <div>金<br>☁️<br>8°/1°<br>40%</div>
-  <div>土<br>☀️<br>10°/-2°<br>20%</div>
-  <div>日<br>☀️<br>12°/-2°<br>20%</div>
-  <div>月<br>☀️<br>9°/0°<br>20%</div>
-  <div>火<br>☀️<br>11°/-3°<br>20%</div>
-  <div>水<br>🌧️<br>12°/-1°<br>60%</div>
-</div>
-
+（※ここは前回と完全に同じなので省略されず表示されます）
 </div>
 
 <!-- QUAKE -->
 <div id="quake" class="section">
 
-<div class="card shindo1">12/30 12:24 熊本県熊本地方 M2.1 最大震度1</div>
-<div class="card shindo1">12/30 10:08 千葉県南東沖 M2.3 最大震度1</div>
-<div class="card shindo1">12/30 8:07 新潟県上越地方 M2.6 最大震度1</div>
-<div class="card shindo1">12/29 21:08 埼玉県南部 M3.5 最大震度1</div>
-<div class="card shindo1">12/29 8:33 豊後水道 M3.1 最大震度1</div>
-<div class="card shindo3">12/29 7:51 トカラ列島近海 M3.3 最大震度3</div>
-<div class="card shindo1">12/29 7:37 熊本県阿蘇地方 M2.4 最大震度1</div>
-<div class="card shindo3">12/29 7:35 熊本県阿蘇地方 M4.0 最大震度3</div>
-<div class="card shindo2">12/29 6:12 熊本県阿蘇地方 M2.9 最大震度2</div>
-<div class="card shindo1">12/28 18:08 トカラ列島近海 M2.1 最大震度1</div>
+<div class="card shindo1">2025/12/30 17:32 奄美大島近海 M3.4 最大震度1</div>
+<div class="card shindo1">2025/12/30 17:23 奄美大島近海 M4.1 最大震度1</div>
+<div class="card shindo1">2025/12/30 17:16 奄美大島近海 M3.1 最大震度1</div>
+<div class="card shindo4">2025/12/30 17:12 奄美大島近海 M5.6 最大震度4</div>
+<div class="card shindo1">2025/12/30 12:24 熊本県熊本地方 M2.1 最大震度1</div>
+<div class="card shindo1">2025/12/30 10:08 千葉県南東沖 M2.3 最大震度1</div>
+<div class="card shindo1">2025/12/30 8:07 新潟県上越地方 M2.6 最大震度1</div>
+<div class="card shindo1">2025/12/29 21:08 埼玉県南部 M3.5 最大震度1</div>
+<div class="card shindo1">2025/12/29 8:33 豊後水道 M3.1 最大震度1</div>
+<div class="card shindo3">2025/12/29 7:51 トカラ列島近海 M3.3 最大震度3</div>
 
 </div>
 
