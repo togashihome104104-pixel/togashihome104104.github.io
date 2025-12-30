@@ -16,6 +16,8 @@ body{
   margin:0;font-family:-apple-system,BlinkMacSystemFont,sans-serif;
   background:var(--bg);color:var(--text);transition:.3s;
 }
+
+/* ヘッダー */
 header{
   background:#b30000;color:#fff;padding:16px;position:relative;
 }
@@ -24,6 +26,8 @@ header{
 }
 .toggle{font-size:3em;cursor:pointer;line-height:1;}
 .toggle-text{font-size:11px;opacity:.9;}
+
+/* タブ */
 .tabs{
   display:flex;gap:6px;padding:10px;background:var(--card);
 }
@@ -34,20 +38,28 @@ header{
   border-radius:6px;
 }
 .tabs button.active{background:#b30000;color:#fff;}
+
+/* 共通 */
 section{display:none;padding:14px;}
 section.active{display:block;}
 .card{
   background:var(--card);border-radius:10px;
   padding:14px;margin-bottom:12px;
 }
+
+/* ニュース */
 details summary{font-weight:bold;font-size:16px;cursor:pointer;}
 .time{color:var(--sub);font-size:13px;margin-top:6px}
-.weather-icon{font-size:3.2em;}
+
+/* 天気 */
+.weather-icon{font-size:3.2em;line-height:1;}
 .high{color:#d32f2f;font-weight:bold}
 .low{color:#0288d1;font-weight:bold}
-.shindo1{color:#fff}
-.shindo2{color:#81d4fa}
-.shindo3{color:#2979ff;font-weight:bold}
+
+/* 地震 震度別色 */
+.shindo1{color:#9e9e9e}     /* 最大震度1：灰色 */
+.shindo2{color:#81d4fa}     /* 最大震度2：水色 */
+.shindo3{color:#2979ff;font-weight:bold} /* 最大震度3：青 */
 </style>
 </head>
 
@@ -91,7 +103,7 @@ details summary{font-weight:bold;font-size:16px;cursor:pointer;}
 
 <div class="card">
 <details>
-<summary>高田馬場エステ店女性店長刺傷　中国籍の男（35）を殺人未遂の疑いで逮捕</summary>
+<summary>高田馬場エステ店女性店長刺傷　中国籍の男（35）を殺人未遂の疑いで逮捕　8月から複数回来店　エステ料金支払いでトラブルか</summary>
 <p>
 29日、東京・高田馬場でエステ店店長の30代の女性が刺された事件で、警視庁は30日未明、中国籍の35歳の男を殺人未遂の疑いで逮捕しました。
 </p>
@@ -101,7 +113,7 @@ details summary{font-weight:bold;font-size:16px;cursor:pointer;}
 
 <div class="card">
 <details>
-<summary>消えるホームの時刻表　横浜市営地下鉄、ＪＲ…省力化目的で乗客に理解求める</summary>
+<summary>消えるホームの時刻表　横浜市営地下鉄、ＪＲ…省力化目的で乗客に理解求める、「配慮足りない」不満も</summary>
 <p>
 横浜市営地下鉄のホーム上から、一覧式の時刻表が消えた。市交通局の業務省力化やコスト削減が目的で、代わりにスマートフォンで時刻を見られる２次元コード（ＱＲコード）を掲出。ただ「高齢者など不慣れな客への配慮が足りない」と交流サイト（ＳＮＳ）で議論を呼び、専門家もサービス低下を懸念している。
 </p>
