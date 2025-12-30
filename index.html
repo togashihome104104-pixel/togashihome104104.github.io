@@ -6,111 +6,109 @@
 <title>ニュース・天気・地震</title>
 
 <style>
-:root {
-  --bg: #ffffff;
-  --text: #000000;
-  --tab: #f0f0f0;
+:root{
+  --bg:#ffffff;
+  --text:#000000;
+  --tab:#f2f2f2;
+}
+.dark{
+  --bg:#121212;
+  --text:#ffffff;
+  --tab:#1f1f1f;
 }
 
-.dark {
-  --bg: #121212;
-  --text: #ffffff;
-  --tab: #1f1f1f;
+body{
+  margin:0;
+  font-family:-apple-system,BlinkMacSystemFont,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+  font-size:16px;
 }
 
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-  background: var(--bg);
-  color: var(--text);
-}
-
-header {
-  padding: 10px;
-  font-size: 12px;
-  text-align: center;
-  opacity: 0.7;
+/* 最終更新 */
+header{
+  text-align:center;
+  font-size:12px;
+  opacity:.7;
+  padding:6px;
 }
 
 /* タブ固定 */
-.tabs {
-  display: flex;
-  background: var(--tab);
-  position: sticky;
-  top: 0;
-  z-index: 100;
+.tabs{
+  display:flex;
+  background:var(--tab);
+  position:sticky;
+  top:0;
+  z-index:100;
 }
 
-.tabs button {
-  flex: 1;
-  padding: 12px;
-  font-size: 16px;
-  border: none;
-  background: none;
+.tabs button{
+  flex:1;
+  padding:12px;
+  border:none;
+  background:none;
+  font-size:16px;
 }
 
-.tabs button.active {
-  font-weight: bold;
-  border-bottom: 3px solid #007aff;
+.tabs button.active{
+  font-weight:bold;
+  border-bottom:3px solid #007aff;
 }
 
-section {
-  display: none;
-  padding: 15px;
+/* ダークモード */
+.mode{
+  position:fixed;
+  top:10px;
+  right:10px;
+  font-size:28px;
+  background:var(--tab);
+  border-radius:50%;
+  padding:10px;
+  border:none;
 }
 
-section.active {
-  display: block;
+/* セクション */
+section{
+  display:none;
+  padding:15px;
 }
+section.active{display:block;}
 
 /* ニュース */
-details {
-  margin-bottom: 15px;
-}
-
-summary {
-  font-weight: bold;
-  cursor: pointer;
-}
+details{margin-bottom:15px;}
+summary{font-weight:bold;cursor:pointer;}
 
 /* 天気 */
-.weather-icon {
-  font-size: 48px;
-}
-
-.high {
-  color: red;
-  font-weight: bold;
-}
-
-.low {
-  color: #4da6ff;
-  font-weight: bold;
-}
+.weather-icon{font-size:52px;}
+.high{color:red;font-weight:bold;}
+.low{color:#4da6ff;font-weight:bold;}
 
 /* 地震 */
-.eq1 { color: gray; }
-.eq2 { color: #4da6ff; }
-.eq3 { color: blue; }
+.eq1{color:gray;}
+.eq2{color:#4da6ff;}
+.eq3{color:blue;}
 
 /* 設定 */
-.setting {
-  margin-bottom: 15px;
+.setting button{
+  font-size:18px;
+  padding:12px;
+  margin:5px 0;
+  width:100%;
 }
 </style>
 </head>
 
 <body>
 
-<header>
-最終更新：2025/12/30
-</header>
+<button class="mode" onclick="toggleMode()">🌙</button>
+
+<header>最終更新：12/30</header>
 
 <div class="tabs">
-  <button class="active" onclick="showTab('news')">📰 ニュース</button>
-  <button onclick="showTab('weather')">🌤 天気</button>
-  <button onclick="showTab('quake')">🌏 地震</button>
-  <button onclick="showTab('setting')">⚙️ 設定</button>
+  <button class="active" onclick="showTab('news')">📰ニュース</button>
+  <button onclick="showTab('weather')">🌤天気</button>
+  <button onclick="showTab('quake')">🌏地震</button>
+  <button onclick="showTab('setting')">⚙️設定</button>
 </div>
 
 <!-- ニュース -->
@@ -136,7 +134,7 @@ summary {
 <details>
 <summary>消えるホームの時刻表　横浜市営地下鉄</summary>
 <p>発表：12/30(火)7:57</p>
-<p>横浜市営地下鉄でホーム上の一覧式時刻表が撤去され、QRコード案内に変更された。高齢者への配慮不足などが議論になっている。</p>
+<p>横浜市営地下鉄でホーム上の一覧式時刻表が撤去され、QRコード案内に変更された。</p>
 </details>
 
 <details>
@@ -148,20 +146,15 @@ summary {
 
 <!-- 天気 -->
 <section id="weather">
-<div>
 <div class="weather-icon">☀️</div>
-<p>今日：<span class="high">↑16</span> / <span class="low">↓0</span> ☂️0%</p>
-</div>
+<p>今日：<span class="high">↑16</span> <span class="low">↓0</span> ☂️0%</p>
 <hr>
-<div>
 <div class="weather-icon">☀️</div>
-<p>明日：<span class="high">↑14</span> / <span class="low">↓2</span> ☂️0%</p>
-</div>
+<p>明日：<span class="high">↑14</span> <span class="low">↓2</span> ☂️0%</p>
 </section>
 
 <!-- 地震 -->
 <section id="quake">
-<div>
 <p class="eq1">12/30 12:24 熊本県熊本地方 M2.1 最大震度1</p>
 <p class="eq1">12/30 10:08 千葉県南東沖 M2.3 最大震度1</p>
 <p class="eq1">12/30 8:07 新潟県上越地方 M2.6 最大震度1</p>
@@ -169,39 +162,42 @@ summary {
 <p class="eq1">12/29 8:33 豊後水道 M3.1 最大震度1</p>
 <p class="eq3 quake3">12/29 7:51 トカラ列島近海 M3.3 最大震度3</p>
 <p class="eq3 quake3">12/29 7:35 熊本県阿蘇地方 M4.0 最大震度3</p>
-</div>
 </section>
 
 <!-- 設定 -->
 <section id="setting">
 <div class="setting">
-<button onclick="setFont('16px')">文字：普通</button>
-<button onclick="setFont('20px')">文字：大</button>
+<button onclick="setFont(16)">文字サイズ：普通</button>
+<button onclick="setFont(20)">文字サイズ：大</button>
 </div>
 
 <div class="setting">
 <label>
-<input type="checkbox" onchange="toggleQuake(this)">
+<input type="checkbox" onchange="filterQuake(this)">
   震度3以上のみ表示
 </label>
 </div>
 </section>
 
 <script>
-function showTab(id) {
-  document.querySelectorAll('section').forEach(s => s.classList.remove('active'));
-  document.querySelectorAll('.tabs button').forEach(b => b.classList.remove('active'));
+function showTab(id){
+  document.querySelectorAll('section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));
   document.getElementById(id).classList.add('active');
   event.target.classList.add('active');
 }
 
-function setFont(size) {
-  document.body.style.fontSize = size;
+function toggleMode(){
+  document.body.classList.toggle('dark');
 }
 
-function toggleQuake(el) {
-  document.querySelectorAll('.eq1').forEach(e => {
-    e.style.display = el.checked ? 'none' : 'block';
+function setFont(size){
+  document.body.style.fontSize=size+'px';
+}
+
+function filterQuake(el){
+  document.querySelectorAll('.eq1').forEach(e=>{
+    e.style.display=el.checked?'none':'block';
   });
 }
 </script>
